@@ -1,0 +1,96 @@
+@import 'tailwindcss';
+
+/* The Life Regulation Lab look (pace docs/DESIGN.md). Dark is the icons' deep teal; light is mint paper. */
+:root {
+  color-scheme: light dark;
+  --ink: #112f3a;
+  --paper: #f2f7f5;
+  --card: #ffffff;
+  --line: #d3e3de;
+  --muted: #557775;
+  --on-ink: #ffffff;
+  --accent: #2a8c82;
+  --tint: #e1f1ec;
+  --notice: #f4ebd6;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --ink: #e6f8f2;
+    --paper: #0d2730;
+    --card: #153744;
+    --line: #285260;
+    --muted: #9bbdb6;
+    --on-ink: #0d2730;
+    --accent: #95e8cc;
+    --tint: #1b4651;
+    --notice: #4a4430;
+  }
+}
+:root[data-theme='dark'] {
+  --ink: #e6f8f2;
+  --paper: #0d2730;
+  --card: #153744;
+  --line: #285260;
+  --muted: #9bbdb6;
+  --on-ink: #0d2730;
+  --accent: #95e8cc;
+  --tint: #1b4651;
+  --notice: #4a4430;
+}
+
+@theme {
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-muted: var(--muted);
+  --color-on-ink: var(--on-ink);
+  --color-accent: var(--accent);
+  --color-tint: var(--tint);
+  --color-notice: var(--notice);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --radius-card: 14px;
+  --radius-button: 11px;
+}
+
+@layer base {
+html,
+body,
+#root {
+  min-height: 100%;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+:root[data-big='true'] body {
+  font-size: 17px;
+}
+button,
+a,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+.emoji {
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+  line-height: 1;
+}
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+}
