@@ -2,6 +2,7 @@ import { NavLink, Outlet } from 'react-router';
 import { useEffect } from 'react';
 import { refreshAll } from '../lib/bridges';
 import { useAppState } from '../lib/store';
+import { inShowcase } from '../lib/showcase';
 
 const TABS = [
   { to: '/', label: 'Home', emoji: '🏠' },
@@ -15,7 +16,7 @@ export function Layout() {
   const state = useAppState();
   // Read every thing when the app opens and each minute while it is open, so Home shows facts.
   useEffect(() => {
-    if (state.things.length === 0) return;
+    if (inShowcase() || state.things.length === 0) return;
     void refreshAll();
     const t = setInterval(() => void refreshAll(), 60_000);
     return () => clearInterval(t);

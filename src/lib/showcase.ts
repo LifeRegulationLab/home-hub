@@ -4,6 +4,11 @@ export function showcaseRequested(search: string): boolean {
   return import.meta.env['VITE_SHOWCASE'] === 'true' && new URLSearchParams(search).has('showcase');
 }
 
+/** True while the made-up house is shown, so nothing tries to reach a real device. */
+export function inShowcase(): boolean {
+  return typeof window !== 'undefined' && showcaseRequested(window.location.search);
+}
+
 /** A made-up house for screenshots and development: no real device, nothing saved. */
 export function showcaseState(): State {
   const d = defaultState();
